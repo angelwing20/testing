@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,9 @@ class ViewController extends Controller
     }
 
     public function index(){
-        return view('index');
+        return view('index',[
+            'products'=>products::orderBy('created_at','DESC')->get()
+        ]);
     }
 
     public function logout(Request $request){
@@ -25,5 +28,11 @@ class ViewController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login_page');
+    }
+
+    public function view($id){
+        return view('view',[
+            'detail'=>products::find($id)
+        ]);
     }
 }
