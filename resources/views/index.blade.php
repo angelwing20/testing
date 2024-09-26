@@ -53,7 +53,13 @@
             <td><a href="{{ route('view',$item->id) }}"><img src="{{ asset('storage/'.$item->image) }}" alt=""></a>{{ $item->p_name }}</td>
             <td>{{ $item->mass }}</td>
             <td>{{ $item->price }}</td>
-            <td><a href="{{ route('view',$item->id) }}"><button type="button">View</button></a></td>
+            <td>
+                <a href="{{ route('view',$item->id) }}"><button type="button">View</button></a><br><br>
+                <form action="{{ route('addcart',$item->id) }}" method="post">
+                    @csrf
+                    <input type="submit" name="submit" value="Add Cart">
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>

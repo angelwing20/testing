@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cartids;
+use App\Models\carts;
 use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +35,12 @@ class ViewController extends Controller
     public function view($id){
         return view('view',[
             'detail'=>products::find($id)
+        ]);
+    }
+
+    public function cart(){
+        return view('cart',[
+            'cart'=>carts::where('user_id',Auth::id())->where('c_status','pending')->get()
         ]);
     }
 }

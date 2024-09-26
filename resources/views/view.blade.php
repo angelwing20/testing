@@ -1,9 +1,15 @@
+@session('message')
+    <script>
+        window.alert("{{ session('message') }}")
+    </script>
+@endsession
+
 <style>
     body{
         margin: 0;
     }
     form{
-        margin-top: 50px;
+        margin-top: 80px;
     }
     h1{
         margin: 0;
@@ -27,7 +33,7 @@
 </head>
 <body>
     <center>
-        <form action="" method="post">
+        <form action="{{ route('addcart_view',$detail->id) }}" method="post">
             @csrf
             <img src="{{ asset('storage/'.$detail->image) }}" alt="">
             <h1>{{ $detail->p_name }}</h1>
@@ -35,20 +41,23 @@
             <p style="margin: 2px">Description: {{ $detail->description }}</p>
             <table>
                 <tr>
-                    <th><label for="mass">Mass (g):</label></th>
-                    <td><input type="number" name="mass" min="100" step="50" oninput="cal({{ $detail->price }})" id="mass" value="{{ $detail->mass }}"></td>
+                    <th><label for="c_mass">Mass (g):</label></th>
+                    <td><input type="number" name="c_mass" min="100" step="50" oninput="cal({{ $detail->price }})" id="c_mass" value="{{ $detail->mass }}"></td>
                 </tr>
                 <tr>
-                    <th><label for="total_price">Total Price:</label></th>
-                    <td><input type="text" name="total_price" id="total_price" value="{{ $detail->price }}" readonly></td>
+                    <th><label for="c_price">Total Price:</label></th>
+                    <td><input type="text" name="c_price" id="c_price" value="{{ $detail->price }}" readonly></td>
                 </tr>
                 <tr>
-                    <th><a href="{{ route('index') }}"><button type="button">Back</button></a></th>
-                    <td><input type="submit" name="submit"></td>
+                    <th>
+                        <a href="{{ route('index') }}"><button type="button">Back</button></a>
+                    </th>
+                    <td>
+                        <input type="submit" name="submit" value="Add Cart">
+                        
+                    </td>
                 </tr>
             </table>
-            <div>   
-            </div>
         </form>
     </center>
 </body>
@@ -56,7 +65,7 @@
 
 <script>
     function cal(price){
-        var mass = document.getElementById('mass');
+        var mass = document.getElementById('c_mass');
         var vmass = mass.value;
 
         if (vmass < 100) {
@@ -65,6 +74,6 @@
         }
 
         var total = mass.value*price/100;
-        document.getElementById('total_price').value = total;
+        document.getElementById('c_price').value = total;
     }
 </script>

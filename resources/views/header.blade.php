@@ -26,6 +26,9 @@
         <a href="{{ route('index') }}">{{ Auth::user()->name }}</a>
     </div>
     <div>
+        <a href="{{ route('cart') }}"><button type="button">Cart</button></a>
+    </div>
+    <div>
         <a href="{{ route('logout') }}"><button type="button" class="logout">Logout</button></a>
     </div>
 </header>

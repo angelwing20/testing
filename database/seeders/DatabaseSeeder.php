@@ -34,6 +34,14 @@ class DatabaseSeeder extends Seeder
             'image'=>'images/2.webp',
             'description'=>'U CAN BUY AND COOK FOR UNDERAGE MOIMOI AND THEN NEFLIX AND CHILL...',
             'mass'=>'100',
+            'price'=>'6',
+        ]);
+
+        products::create([
+            'p_name'=>'Carbage',
+            'image'=>'images/3.webp',
+            'description'=>'U CAN BUY AND COOK FOR UNDERAGE MOIMOI AND THEN NEFLIX AND CHILL...',
+            'mass'=>'100',
             'price'=>'4',
         ]);
     }
